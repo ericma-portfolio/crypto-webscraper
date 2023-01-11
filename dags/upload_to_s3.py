@@ -2,7 +2,10 @@ import sys
 import os
 
 sys.path.insert(
-    0,os.path.abspath(os.path.dirname('/Users/ericma/desktop/cryptoScraper/dags/scripts'))
+    0,
+    os.path.abspath(
+        os.path.dirname("/Users/ericma/desktop/cryptoScraper/dags/scripts")
+    ),
 )
 import scripts.get_price as get_price
 import pandas as pd
@@ -18,7 +21,7 @@ load_dotenv(find_dotenv())
 data = get_price.get_price()
 
 coin_data = {
-    "symbol" : [
+    "symbol": [
         data[0][0], 
         data[1][0], 
         data[2][0], 
@@ -30,7 +33,7 @@ coin_data = {
         data[8][0], 
         data[9][0]
     ],
-    "price" : [
+    "price": [
         data[0][1], 
         data[1][1], 
         data[2][1], 
@@ -44,6 +47,7 @@ coin_data = {
     ],
 }
 
+
 def upload_to_s3():
     df = pd.DataFrame(coin_data)
     bucket = "crypto-webscraper"
@@ -52,19 +56,19 @@ def upload_to_s3():
     s3_resource = boto3.resource(
         "s3", 
         aws_access_key_id=os.getenv("S3_ACCESS_KEY_ID"), 
-        aws_secret_access_key=os.getenv("S3_SECRET_ACCESS_KEY")
+        aws_secret_access_key=os.getenv("S3_SECRET_ACCESS_KEY"),
     )
     s3_resource.Object(bucket, "testv3.csv").put(Body=csv_buffer.getvalue())
 
-default_args = {"owner" : "Eric", "retries" : 5, "retry_delay" : timedelta(minutes = 5)
-}
+
+default_args = {"owner": "Eric", "retries": 5, "retry_delay": timedelta(minutes=5)}
 
 with DAG(
     default_args=default_args,
     dag_id="upload_to_s3",
     description="Upload top 10 coins to s3 daily",
     start_date=datetime(2023 , 1, 11),
-    schedule_interval="@daily"
+    schedule_interval="@daily",
 ) as dag:
     task1 = PythonOperator(
         task_id="upload_to_s3",
