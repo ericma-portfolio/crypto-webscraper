@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 sys.path.insert(
     0,
@@ -7,14 +7,15 @@ sys.path.insert(
         os.path.dirname("/Users/ericma/desktop/cryptoScraper/dags/scripts")
     ),
 )
-import scripts.get_price as get_price
-import pandas as pd
-from io import StringIO
-import boto3
-from airflow import DAG
 from datetime import datetime, timedelta
+from io import StringIO
+
+import boto3
+import pandas as pd
+import scripts.get_price as get_price
+from airflow import DAG
 from airflow.operators.python import PythonOperator
-from dotenv import load_dotenv, find_dotenv
+from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
 

@@ -1,8 +1,9 @@
 import sys
-from requests import Request, Session
+
 import json
 import os
 from dotenv import load_dotenv, find_dotenv
+from requests import Request, Session
 
 load_dotenv(find_dotenv())
 
@@ -29,8 +30,6 @@ def get_price():
     for coin in coins:
 
         data = coin["symbol"], coin["quote"]["USD"]["price"]
-        
-        
         price.append(data)
 
     return price
