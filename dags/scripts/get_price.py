@@ -1,5 +1,6 @@
 import json
 import os
+
 from dotenv import load_dotenv, find_dotenv
 from requests import Session
 
