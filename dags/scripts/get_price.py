@@ -30,6 +30,7 @@ def get_price():
 
         data = coin["symbol"], coin["quote"]["USD"]["price"]
         
+        
         price.append(data)
 
     return price

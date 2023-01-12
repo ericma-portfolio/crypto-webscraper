@@ -22,27 +22,27 @@ data = get_price.get_price()
 
 coin_data = {
     "symbol": [
-        data[0][0], 
-        data[1][0], 
-        data[2][0], 
-        data[3][0], 
-        data[4][0], 
-        data[5][0], 
-        data[6][0], 
-        data[7][0], 
-        data[8][0], 
+        data[0][0],
+        data[1][0],
+        data[2][0],
+        data[3][0],
+        data[4][0],
+        data[5][0],
+        data[6][0],
+        data[7][0],
+        data[8][0],
         data[9][0],
     ],
     "price": [
-        data[0][1], 
-        data[1][1], 
-        data[2][1], 
-        data[3][1], 
-        data[4][1], 
-        data[5][1], 
-        data[6][1], 
-        data[7][1], 
-        data[8][1], 
+        data[0][1],
+        data[1][1],
+        data[2][1],
+        data[3][1],
+        data[4][1],
+        data[5][1],
+        data[6][1],
+        data[7][1],
+        data[8][1],
         data[9][1],
     ],
 }
@@ -54,7 +54,7 @@ def upload_to_s3():
     csv_buffer = StringIO()
     df.to_csv(csv_buffer)
     s3_resource = boto3.resource(
-        "s3", 
+        "s3",
         aws_access_key_id=os.getenv("S3_ACCESS_KEY_ID"),
         aws_secret_access_key=os.getenv("S3_SECRET_ACCESS_KEY"),
     )
@@ -73,5 +73,5 @@ with DAG(
     task1 = PythonOperator(
         task_id="upload_to_s3",
         python_callable=upload_to_s3,
-    )    
+    )
     task1
