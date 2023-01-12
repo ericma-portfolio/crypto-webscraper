@@ -31,7 +31,7 @@ coin_data = {
         data[6][0], 
         data[7][0], 
         data[8][0], 
-        data[9][0]
+        data[9][0],
     ],
     "price": [
         data[0][1], 
@@ -43,7 +43,7 @@ coin_data = {
         data[6][1], 
         data[7][1], 
         data[8][1], 
-        data[9][1]
+        data[9][1],
     ],
 }
 
@@ -55,7 +55,7 @@ def upload_to_s3():
     df.to_csv(csv_buffer)
     s3_resource = boto3.resource(
         "s3", 
-        aws_access_key_id=os.getenv("S3_ACCESS_KEY_ID"), 
+        aws_access_key_id=os.getenv("S3_ACCESS_KEY_ID"),
         aws_secret_access_key=os.getenv("S3_SECRET_ACCESS_KEY"),
     )
     s3_resource.Object(bucket, "testv3.csv").put(Body=csv_buffer.getvalue())
@@ -67,12 +67,11 @@ with DAG(
     default_args=default_args,
     dag_id="upload_to_s3",
     description="Upload top 10 coins to s3 daily",
-    start_date=datetime(2023 , 1, 11),
+    start_date=datetime(2023, 1, 11),
     schedule_interval="@daily",
 ) as dag:
     task1 = PythonOperator(
         task_id="upload_to_s3",
         python_callable=upload_to_s3,
-    )
-    
+    )    
     task1

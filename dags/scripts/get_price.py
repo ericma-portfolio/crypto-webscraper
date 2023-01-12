@@ -14,7 +14,7 @@ def get_price():
 
     headers = {
         "Accepts": "application/json",
-        "X-CMC_PRO_API_KEY": os.getenv("COIN_MARKET_CAP_API")
+        "X-CMC_PRO_API_KEY": os.getenv("COIN_MARKET_CAP_API"),
     }
 
     session = Session()
@@ -30,7 +30,6 @@ def get_price():
 
         data = coin["symbol"], coin["quote"]["USD"]["price"]
         
-
         price.append(data)
 
     return price
