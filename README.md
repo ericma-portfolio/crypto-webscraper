@@ -1,1 +1,1 @@
-# cyrpto-webscraper
+# crypto-webscraper
