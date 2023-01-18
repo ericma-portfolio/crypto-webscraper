@@ -33,7 +33,6 @@ with DAG(
     def upload_to_s3():
         from datetime import date
 
-
         import boto3
         import pandas as pd
         import scripts.get_price as get_price
@@ -81,8 +80,6 @@ with DAG(
         ).put(Body=csv_buffer.getvalue())
 
     upload_to_s3()
-    
-    
     # task1 = PythonOperator(
     #    task_id="upload_to_s3",
     #    python_callable=upload_to_s3,
