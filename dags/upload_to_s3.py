@@ -1,11 +1,11 @@
 import os
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
 from io import StringIO
 
 from airflow import DAG
 from airflow.decorators import task
-from airflow.operators.python import PythonOperator
+# from airflow.operators.python import PythonOperator
 from dotenv import find_dotenv, load_dotenv
 
 sys.path.insert(
@@ -31,7 +31,7 @@ with DAG(
 
     @task()
     def upload_to_s3():
-        from datetime import date
+        from datetime import datetime
 
         import boto3
         import pandas as pd
