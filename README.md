@@ -1,8 +1,8 @@
 # crypto-webscraper
 
 ## Overview
-An end-to-end data pipeline that scrapes real-time cryptocurrency data 
-from CoinMarketCap, stores it in AWS S3, and loads it into a Redshift 
+An end-to-end data pipeline that scrapes real-time cryptocurrency data
+from CoinMarketCap, stores it in AWS S3, and loads it into a Redshift
 cluster for analysis and visualization in Tableau.
 
 ## Architecture
